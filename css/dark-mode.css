@@ -1,0 +1,231 @@
+/**
+ * dark-mode.css
+ * Dark mode styles for App Shelf
+ */
+
+/* Dark Mode Base */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+/* Dark Mode Text */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode .folder-name,
+body.dark-mode .modal-title {
+    color: #f0f0f0;
+}
+
+/* Dark Mode Search */
+body.dark-mode .search-container {
+    background-color: rgba(40, 40, 40, 0.8);
+}
+
+body.dark-mode .search-box {
+    background-color: rgba(60, 60, 60, 0.7);
+    color: #f0f0f0;
+}
+
+body.dark-mode .search-box:focus {
+    background-color: rgba(70, 70, 70, 0.9);
+}
+
+body.dark-mode .search-dropdown {
+    background-color: rgba(50, 50, 50, 0.95);
+    border-color: rgba(80, 80, 80, 0.2);
+}
+
+body.dark-mode .search-option:hover {
+    background-color: rgba(1, 105, 255, 0.2);
+}
+
+body.dark-mode .search-option.active {
+    background-color: rgba(1, 105, 255, 0.3);
+}
+
+/* Dark Mode Content Area */
+body.dark-mode .content-area {
+    background-color: rgba(40, 40, 40, 0.8);
+}
+
+/* Dark Mode Folders */
+body.dark-mode .folder-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .folder-toggle {
+    color: #aaaaaa;
+}
+
+body.dark-mode .folder-icon,
+body.dark-mode .add-menu-item-icon,
+body.dark-mode .context-menu-item-icon {
+    color: #0169ff;
+}
+
+/* Dark Mode Bookmark Cards */
+body.dark-mode .bookmark-card {
+    background-color: #2c2c2c;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .bookmark-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .bookmark-image {
+    background-color: #333333;
+}
+
+/* Dark Mode Buttons */
+body.dark-mode .bookmark-edit-btn {
+    background-color: rgba(40, 40, 40, 0.9);
+    color: #f0f0f0;
+}
+
+body.dark-mode .folder-edit-btn {
+    background-color: rgba(60, 60, 60, 0.9);
+    color: #f0f0f0;
+}
+
+body.dark-mode .btn-cancel {
+    background-color: rgba(100, 100, 100, 0.3);
+    color: #f0f0f0;
+}
+
+body.dark-mode .btn-cancel:hover {
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+body.dark-mode .btn-delete {
+    background-color: #a61d24;
+}
+
+body.dark-mode .btn-delete:hover {
+    background-color: #8a1a21;
+}
+
+/* Dark Mode Add Menu */
+body.dark-mode .add-button {
+    background-color: #0169ff;
+}
+
+body.dark-mode .add-menu {
+    background-color: rgba(50, 50, 50, 0.95);
+    border-color: rgba(80, 80, 80, 0.2);
+}
+
+body.dark-mode .add-menu-item:hover {
+    background-color: rgba(1, 105, 255, 0.2);
+}
+
+/* Dark Mode Modals */
+body.dark-mode .modal {
+    background-color: #2c2c2c;
+}
+
+body.dark-mode .modal-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .modal-close {
+    color: #aaaaaa;
+}
+
+body.dark-mode .modal-footer {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Forms */
+body.dark-mode .form-label {
+    color: #f0f0f0;
+}
+
+body.dark-mode .form-hint {
+    color: #aaaaaa;
+}
+
+body.dark-mode .form-input,
+body.dark-mode .form-select {
+    background-color: rgba(60, 60, 60, 0.7);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+}
+
+body.dark-mode .form-input:focus,
+body.dark-mode .form-select:focus {
+    background-color: rgba(70, 70, 70, 0.9);
+    border-color: #0169ff;
+}
+
+/* Dark Mode No Results */
+body.dark-mode .no-results {
+    color: #aaaaaa;
+}
+
+/* Dark Mode Context Menu */
+body.dark-mode .context-menu {
+    background-color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .context-menu-item:hover {
+    background-color: rgba(1, 105, 255, 0.2);
+}
+
+body.dark-mode .context-menu-item-text {
+    color: #f0f0f0;
+}
+
+/* Dark Mode Keyboard Shortcuts */
+body.dark-mode .keyboard-shortcuts {
+    background-color: rgba(40, 40, 40, 0.9);
+    color: #f0f0f0;
+}
+
+body.dark-mode .keyboard-shortcuts .shortcut-key {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #555;
+}
+
+body.dark-mode .keyboard-shortcuts .close-btn {
+    color: #aaa;
+}
+
+/* Dark Mode Toast */
+body.dark-mode .toast-notification {
+    background-color: rgba(50, 50, 50, 0.9);
+    color: #f0f0f0;
+}
+
+/* Dark Mode Toggle Options */
+body.dark-mode .toggle-option {
+    border-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(60, 60, 60, 0.5);
+}
+
+body.dark-mode .toggle-option:hover {
+    background-color: rgba(70, 70, 70, 0.8);
+}
+
+/* Dark Mode Branding */
+body.dark-mode .appshelf-branding {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Dark Mode Night Mode Toggle */
+body.dark-mode .sun-icon {
+    display: none;
+}
+
+body.dark-mode .moon-icon {
+    display: block;
+    color: #f0f0f0;
+}

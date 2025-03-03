@@ -1,0 +1,96 @@
+/**
+ * layout.css
+ * Layout structures and grid system for App Shelf
+ */
+
+/* Content Area Styles */
+.content-area {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0 0 18px 18px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 1;
+}
+
+/* Bookmarks Grid */
+.bookmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+/* No Results Message */
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+    font-size: 18px;
+    grid-column: 1 / -1;
+}
+
+/* Hidden Element */
+.hidden {
+    display: none;
+}
+
+/* Responsive Layouts */
+@media (max-width: 1200px) {
+    .content-area {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .content-area {
+        grid-template-columns: 1fr;
+    }
+    
+    .bookmarks-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .add-button {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .add-menu {
+        bottom: 80px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .bookmarks-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .modal {
+        width: 95%;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 380px) {
+    .bookmarks-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .add-button {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+}

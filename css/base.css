@@ -1,1 +1,81 @@
+/**
+ * base.css
+ * Base styles, resets, and typography for App Shelf
+ */
 
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Document Body */
+body {
+    background-color: #f2f2f7;
+    padding: 20px;
+    color: #1d1d1f;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    color: #1d1d1f;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #0169ff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Focus Styles */
+:focus {
+    outline: none;
+}
+
+/* Appshelf Branding */
+.appshelf-branding {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    z-index: 5;
+}
+
+.appshelf-branding a {
+    color: #0169ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
