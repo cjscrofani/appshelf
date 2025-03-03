@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Shelf</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" class="search-box" id="searchBox" placeholder="Search the web or your bookmarks...">
+                <div class="search-engine-icon" id="searchEngineIcon" style="background-image: url('https://www.google.com/favicon.ico');"></div>
+                <div class="search-dropdown" id="searchDropdown">
+                    <div class="search-option" data-engine="bookmarks">
+                        <div class="search-option-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                <circle cx="17" cy="17" r="3"></circle>
+                                <line x1="19" y1="19" x2="21" y2="21"></line>
+                            </svg>
+                        </div>
+                        <div class="search-option-text">Search Bookmarks</div>
+                    </div>
+                    <div class="search-option active" data-engine="google" data-url="https://www.google.com/search?q=">
+                        <div class="search-option-icon" style="background-image: url('https://www.google.com/favicon.ico');"></div>
+                        <div class="search-option-text">Search with Google</div>
+                    </div>
+                    <div class="search-option" data-engine="bing" data-url="https://www.bing.com/search?q=">
+                        <div class="search-option-icon" style="background-image: url('https://www.bing.com/favicon.ico');"></div>
+                        <div class="search-option-text">Search with Bing</div>
+                    </div>
+                    <div class="search-option" data-engine="duckduckgo" data-url="https://duckduckgo.com/?q=">
+                        <div class="search-option-icon" style="background-image: url('https://duckduckgo.com/favicon.ico');"></div>
+                        <div class="search-option-text">Search with DuckDuckGo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Night Mode Toggle Switch -->
+        <div class="night-mode-toggle" id="nightModeToggle">
+            <div class="toggle-label">
+                <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </div>
+            <div class="toggle-switch">
+                <input type="checkbox" id="nightModeCheckbox">
+                <span class="slider round"></span>
+            </div>
+        </div>
+        
+        <div class="content-area" id="contentArea">
+            <!-- Folders and bookmarks will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Add button and menus -->
+    <div class="add-button" id="addButton">+</div>
+    
+    <!-- Updated Add Menu with Keyboard Shortcuts and Settings -->
+    <div class="add-menu" id="addMenu">
+        <div class="add-menu-item" id="addBookmarkMenuItem">
+            <div class="add-menu-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <div class="add-menu-item-text">Add Bookmark</div>
+        </div>
+        <div class="add-menu-item" id="addFolderMenuItem">
+            <div class="add-menu-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <div class="add-menu-item-text">Add Folder</div>
+        </div>
+        <div class="add-menu-item" id="saveBookmarksMenuItem">
+            <div class="add-menu-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+            </div>
+            <div class="add-menu-item-text">Export Bookmarks</div>
+        </div>
+        <div class="add-menu-item" id="loadBookmarksMenuItem">
+            <div class="add-menu-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            </div>
+            <div class="add-menu-item-text">Import Bookmarks</div>
+        </div>
+        <!-- Keyboard Shortcuts Menu Item -->
+        <div class="add-menu-item" id="keyboardShortcutsMenuItem">
+            <div class="add-menu-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    <line x1="8" y1="15" x2="8" y2="15"></line>
+                    <line x1="12" y1="15" x2="12" y2="15"></line>
+                    <line x1="16" y1="15" x2="16" y2="15"></line>
+                </svg>
+            </div>
+            <div class="add-menu-item-text">Keyboard Shortcuts</div>
+        </div>
+        <!-- Settings Menu Item -->
+        <div class="add-menu-item" id="settingsMenuItem">
+            <div class="add-menu-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </div>
+            <div class="add-menu-item-text">Settings</div>
+        </div>
+    </div>
+    <input type="file" id="bookmarksFileInput" accept=".json" style="display: none;">
+    
+    <!-- Add Bookmark Modal -->
+    <div class="modal-backdrop" id="addBookmarkModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Add New Bookmark</div>
+                <button class="modal-close" id="closeBookmarkModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addBookmarkForm">
+                    <div class="form-group">
+                        <label for="bookmarkName" class="form-label">Name</label>
+                        <input type="text" id="bookmarkName" class="form-input" placeholder="Enter bookmark name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookmarkUrl" class="form-label">URL</label>
+                        <input type="url" id="bookmarkUrl" class="form-input" placeholder="https://example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookmarkFolder" class="form-label">Folder</label>
+                        <select id="bookmarkFolder" class="form-select">
+                            <option value="unorganized">Unorganized</option>
+                            <!-- Folders will be added dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookmarkImage" class="form-label">Custom Image URL (Optional)</label>
+                        <input type="url" id="bookmarkImage" class="form-input" placeholder="Leave empty to use favicon">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="cancelBookmark">Cancel</button>
+                <button class="btn btn-primary" id="saveBookmark">Add Bookmark</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Bookmark Modal -->
+    <div class="modal-backdrop" id="editBookmarkModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Edit Bookmark</div>
+                <button class="modal-close" id="closeEditBookmarkModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editBookmarkForm">
+                    <input type="hidden" id="editBookmarkOriginalUrl">
+                    <input type="hidden" id="editBookmarkOriginalFolder">
+                    <div class="form-group">
+                        <label for="editBookmarkName" class="form-label">Name</label>
+                        <input type="text" id="editBookmarkName" class="form-input" placeholder="Enter bookmark name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editBookmarkUrl" class="form-label">URL</label>
+                        <input type="url" id="editBookmarkUrl" class="form-input" placeholder="https://example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editBookmarkFolder" class="form-label">Folder</label>
+                        <select id="editBookmarkFolder" class="form-select">
+                            <option value="unorganized">Unorganized</option>
+                            <!-- Folders will be added dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editBookmarkImage" class="form-label">Custom Image URL (Optional)</label>
+                        <input type="url" id="editBookmarkImage" class="form-input" placeholder="Leave empty to use favicon">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-delete" id="deleteBookmarkBtn">Delete</button>
+                <button class="btn btn-cancel" id="cancelEditBookmark">Cancel</button>
+                <button class="btn btn-primary" id="saveEditBookmark">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Folder Modal -->
+    <div class="modal-backdrop" id="addFolderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Add New Folder</div>
+                <button class="modal-close" id="closeFolderModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addFolderForm">
+                    <div class="form-group">
+                        <label for="folderName" class="form-label">Folder Name</label>
+                        <input type="text" id="folderName" class="form-input" placeholder="Enter folder name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="folderId" class="form-label">Folder ID</label>
+                        <input type="text" id="folderId" class="form-input" placeholder="A unique identifier (e.g., work, personal)" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="cancelFolder">Cancel</button>
+                <button class="btn btn-primary" id="saveFolder">Add Folder</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Folder Modal -->
+    <div class="modal-backdrop" id="editFolderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Edit Folder</div>
+                <button class="modal-close" id="closeEditFolderModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editFolderForm">
+                    <input type="hidden" id="editFolderOriginalId">
+                    <div class="form-group">
+                        <label for="editFolderName" class="form-label">Folder Name</label>
+                        <input type="text" id="editFolderName" class="form-input" placeholder="Enter folder name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editFolderId" class="form-label">Folder ID</label>
+                        <input type="text" id="editFolderId" class="form-input" placeholder="A unique identifier (e.g., work, personal)" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-delete" id="deleteFolderBtn">Delete</button>
+                <button class="btn btn-cancel" id="cancelEditFolder">Cancel</button>
+                <button class="btn btn-primary" id="saveEditFolder">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div class="modal-backdrop" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Settings</div>
+                <button class="modal-close" id="closeSettingsModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Bookmarks Open In</label>
+                    <div class="toggle-option-container">
+                        <label class="toggle-option">
+                            <input type="radio" name="bookmarkTarget" value="current" id="bookmarkTargetCurrent">
+                            <span class="toggle-option-text">Current Tab</span>
+                        </label>
+                        <label class="toggle-option">
+                            <input type="radio" name="bookmarkTarget" value="new" id="bookmarkTargetNew" checked>
+                            <span class="toggle-option-text">New Tab</span>
+                        </label>
+                    </div>
+                    <div class="form-hint">Choose how bookmarks will open when clicked</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="cancelSettings">Cancel</button>
+                <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Keyboard Shortcuts Popup -->
+    <div class="keyboard-shortcuts" id="keyboardShortcutsPopup">
+        <button class="close-btn">&times;</button>
+        <h3>Keyboard Shortcuts</h3>
+        <ul>
+            <li><span class="shortcut-key">Ctrl/⌘</span> + <span class="shortcut-key">D</span> - Add new bookmark</li>
+            <li><span class="shortcut-key">Ctrl/⌘</span> + <span class="shortcut-key">F</span> - Add new folder</li>
+            <li><span class="shortcut-key">Ctrl/⌘</span> + <span class="shortcut-key">S</span> - Export bookmarks</li>
+            <li><span class="shortcut-key">Esc</span> - Close popups</li>
+        </ul>
+    </div>
+    
+    <!-- Appshelf Branding -->
+    <div class="appshelf-branding">
+        Powered by <a href="https://github.com/cjscrofani/appshelf">App Shelf</a>
+    </div>
+
+    <!-- Use type="module" for ES6 module support -->
+    <script type="module" src="newtab.js"></script>
+</body>
+</html>

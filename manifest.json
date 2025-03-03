@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "App Shelf",
+  "version": "0.3",
+  "description": "A clean new tab page for displaying your apps and bookmarks.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "icons": {
+    "16": "assets/icons/icon-16.svg",
+    "48": "assets/icons/icon-48.svg",
+    "128": "assets/icons/icon-128.svg"
+  },
+  "permissions": [],
+  "author": "App Shelf Team"
+}
