@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Background -->
+  <rect width="48" height="48" rx="10" fill="#f2f4fa" />
+  
+  <!-- Shelf Base -->
+  <rect x="8" y="9" width="32" height="30" rx="2" fill="#0169ff" opacity="0.1" />
+  
+  <!-- Shelves -->
+  <rect x="8" y="9" width="32" height="3" rx="1" fill="#0169ff" />
+  <rect x="8" y="19" width="32" height="3" rx="1" fill="#0169ff" />
+  <rect x="8" y="30" width="32" height="3" rx="1" fill="#0169ff" />
+  <rect x="8" y="36" width="32" height="3" rx="1" fill="#0169ff" />
+  
+  <!-- Bookshelf Sides -->
+  <rect x="8" y="9" width="2" height="30" rx="1" fill="#0169ff" />
+  <rect x="38" y="9" width="2" height="30" rx="1" fill="#0169ff" />
+  
+  <!-- Bookmark Icons -->
+  
+  <!-- Shelf 1 -->
+  <rect x="12" y="12" width="5" height="7" rx="1" fill="#ff5733" />
+  <rect x="19" y="12" width="5" height="7" rx="1" fill="#33a1ff" />
+  <rect x="26" y="12" width="5" height="7" rx="1" fill="#33ff57" />
+  <rect x="33" y="12" width="5" height="7" rx="1" fill="#ffb733" />
+  
+  <!-- Shelf 2 -->
+  <rect x="12" y="23" width="5" height="7" rx="1" fill="#33a1ff" />
+  <rect x="19" y="23" width="5" height="7" rx="1" fill="#ffb733" />
+  <rect x="26" y="23" width="5" height="7" rx="1" fill="#ff5733" />
+  <rect x="33" y="23" width="5" height="7" rx="1" fill="#33ff57" />
+</svg>
