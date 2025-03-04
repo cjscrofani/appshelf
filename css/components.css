@@ -85,11 +85,12 @@
 
 .bookmark-actions {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 0;
+    right: 0;
     opacity: 0;
     transition: opacity 0.2s ease;
     z-index: 10;
+    padding: 5px;
 }
 
 .bookmark-card:hover .bookmark-actions {
@@ -97,8 +98,8 @@
 }
 
 .bookmark-edit-btn {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
     border: none;
@@ -108,6 +109,14 @@
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.bookmark-edit-btn svg {
+    width: 12px;
+    height: 12px;
 }
 
 .bookmark-edit-btn:hover {
@@ -128,6 +137,8 @@
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     cursor: pointer;
+    position: relative;
+    padding-right: 40px; /* Make space for actions */
 }
 
 .folder-icon {
@@ -143,16 +154,16 @@
     color: #1d1d1f;
     letter-spacing: -0.022em;
     order: 1;
+    flex-grow: 1;
 }
 
 .folder-actions {
     margin-left: 10px;
-    margin-right: 0;
     opacity: 0;
     transition: opacity 0.2s ease;
-    display: inline-flex;
-    align-items: center;
     order: 2;
+    position: absolute;
+    right: 25px;
 }
 
 .folder-toggle {
@@ -161,6 +172,8 @@
     color: #8e8e93;
     transition: transform 0.3s, color 0.2s;
     order: 3;
+    position: absolute;
+    right: 0;
 }
 
 .folder-header:hover .folder-toggle {
@@ -500,7 +513,7 @@ input:checked + .slider:before {
     z-index: 999;
     display: none;
     flex-direction: column;
-    width: 180px;
+    width: 200px; /* Increased width for longer text */
     border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -515,11 +528,13 @@ input:checked + .slider:before {
 }
 
 .add-menu-item {
-    padding: 12px 20px;
+    padding: 12px 15px;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;    /* Hide overflow */
 }
 
 .add-menu-item:hover {
@@ -529,11 +544,14 @@ input:checked + .slider:before {
 .add-menu-item-icon {
     margin-right: 10px;
     color: #0169ff;
+    flex-shrink: 0;
 }
 
 .add-menu-item-text {
     font-size: 14px;
     font-weight: 500;
+    text-overflow: ellipsis; /* Add ellipsis for text overflow */
+    overflow: hidden;
 }
 
 /* Context Menu */
@@ -641,4 +659,129 @@ input:checked + .slider:before {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+/* Dark mode compatibility */
+body.dark-mode .folder-edit-btn {
+    background-color: rgba(60, 60, 60, 0.9);
+}
+
+body.dark-mode .bookmark-edit-btn {
+    background-color: rgba(40, 40, 40, 0.9);
+}
+
+/**
+ * Class-based fixes for rightmost elements (used with JavaScript)
+ */
+
+/* Rightmost folder fixes */
+.rightmost-folder .folder-header {
+  position: relative;
+  overflow: visible;
+}
+
+.rightmost-folder .folder-actions {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 500;
+  pointer-events: none;
+}
+
+.rightmost-folder .folder-header:hover .folder-actions {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.rightmost-folder .folder-edit-btn {
+  z-index: 600;
+  cursor: pointer !important;
+  width: 28px;  /* Slightly larger target */
+  height: 28px;
+}
+
+/* Rightmost bookmark fixes */
+.rightmost-bookmark {
+  position: relative;
+  overflow: visible;
+}
+
+.rightmost-bookmark .bookmark-actions {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 500;
+  pointer-events: none;
+}
+
+.rightmost-bookmark:hover .bookmark-actions {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.rightmost-bookmark .bookmark-edit-btn {
+  z-index: 600;
+  cursor: pointer !important;
+  width: 26px;  /* Slightly larger target */
+  height: 26px;
+}
+
+/* Visual indicators for debugging */
+.rightmost-folder .folder-header:hover {
+  background-color: rgba(0, 0, 255, 0.05);
+}
+
+.rightmost-bookmark:hover {
+  outline: 2px solid #0169ff;
+}
+
+/* Fix for elements at narrower viewport widths */
+@media (max-width: 1400px) {
+  /* Ensure folder actions are properly positioned and visible on hover */
+  .folder-header {
+    position: relative;
+    overflow: visible !important;
+  }
+  
+  .folder-actions {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+  }
+  
+  .folder-header:hover .folder-actions {
+    opacity: 1;
+  }
+  
+  /* Ensure bookmark actions are properly positioned and visible on hover */
+  .bookmark-card {
+    overflow: visible !important;
+  }
+  
+  .bookmark-actions {
+    z-index: 50;
+  }
+  
+  /* Fix z-index and stacking context issues */
+  .content-area {
+    z-index: 10;
+  }
+  
+  /* Ensure edit buttons are always clickable */
+  .folder-edit-btn,
+  .bookmark-edit-btn {
+    pointer-events: auto !important;
+    z-index: 51;
+  }
 }

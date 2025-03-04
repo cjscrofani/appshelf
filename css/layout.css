@@ -1,6 +1,7 @@
 /**
  * layout.css
  * Layout structures and grid system for App Shelf
+ * UPDATED WITH FIXES FOR WIDGET INTERACTION
  */
 
 /* Content Area Styles */
@@ -15,7 +16,33 @@
     gap: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     position: relative;
-    z-index: 1;
+    z-index: 10; /* REDUCED from 1000 to 10 */
+    margin-left: 175px;   /* Reduced from 300px to 250px */
+    margin-right: 0;      /* No right margin needed */
+    width: auto;          /* Allow content to adjust to margins */
+    pointer-events: auto; /* Ensure content receives clicks */
+}
+
+/* Search Container adjustments for widgets */
+.search-container {
+    margin-left: 175px;   /* Reduced from 300px to 250px */
+    margin-right: 0;
+    width: auto;
+    z-index: 50; /* ADJUSTED to be between content and widgets */
+    pointer-events: auto;
+}
+
+/* Hide the right widgets container */
+.widgets-container-right {
+    display: none;
+}
+
+/* Ensure widgets don't overlap with other content */
+.widgets-container-left {
+    z-index: 100; /* CONSISTENT z-index value, higher than content */
+    width: 230px;        /* Reduced from 280px to 230px */
+    left: 10px;
+    pointer-events: auto !important; /* Force pointer events */
 }
 
 /* Bookmarks Grid */
@@ -45,12 +72,40 @@
 @media (max-width: 1200px) {
     .content-area {
         grid-template-columns: repeat(2, 1fr);
+        margin-left: 220px;  /* Adjusted for smaller screens */
+    }
+    
+    .search-container {
+        margin-left: 220px;  /* Adjusted for smaller screens */
+    }
+    
+    .widgets-container-left {
+        width: 200px;  /* Adjusted for smaller screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .content-area {
+        margin-left: 200px;
+    }
+    
+    .search-container {
+        margin-left: 200px;
+    }
+    
+    .widgets-container-left {
+        width: 180px;
     }
 }
 
 @media (max-width: 768px) {
     .content-area {
         grid-template-columns: 1fr;
+        margin-left: 0;
+    }
+    
+    .search-container {
+        margin-left: 0;
     }
     
     .bookmarks-grid {
@@ -68,6 +123,17 @@
     .add-menu {
         bottom: 80px;
         right: 20px;
+    }
+    
+    .widgets-container-left {
+        left: -200px;
+        width: 200px;
+        transition: transform 0.3s ease;
+    }
+    
+    .widgets-container-left:hover, 
+    .widgets-container-left:focus-within {
+        transform: translateX(200px);
     }
 }
 

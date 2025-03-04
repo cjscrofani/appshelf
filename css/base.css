@@ -49,24 +49,34 @@ a:hover {
     outline: none;
 }
 
-/* Appshelf Branding */
+/* Appshelf Branding - Updated to be centered at bottom like a footer */
 .appshelf-branding {
     position: fixed;
     bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 100%;
     padding: 5px;
     z-index: 5;
+    pointer-events: none; /* Prevents it from blocking clicks */
 }
 
 .appshelf-branding a {
     color: #0169ff;
     text-decoration: none;
     font-weight: 500;
+    pointer-events: auto; /* Makes only the link clickable */
+}
+
+/* Responsive adjustments for the footer */
+@media (max-width: 768px) {
+    .appshelf-branding {
+        font-size: 0.8em;
+        padding: 3px;
+    }
 }
 
 /* Animations */

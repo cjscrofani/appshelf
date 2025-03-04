@@ -12,6 +12,8 @@ import { ModalManager } from './components/modal.js';
 import { BookmarkRenderer } from './components/bookmarkCard.js';
 import { FolderRenderer } from './components/folderView.js';
 import { ContextMenuManager } from './components/contextMenu.js';
+import { WidgetManager } from './modules/widgets.js';
+import { WidgetRenderer } from './components/widgetRenderer.js';
 
 /**
  * Main App class that initializes and coordinates all components
@@ -25,10 +27,12 @@ class App {
     this.searchManager = new SearchManager();
     this.modalManager = new ModalManager();
     this.contextMenuManager = new ContextMenuManager();
+    this.widgetManager = new WidgetManager();
     
     // Initialize renderers
     this.bookmarkRenderer = new BookmarkRenderer(this.bookmarkManager, this.settingsManager);
     this.folderRenderer = new FolderRenderer(this.folderManager, this.bookmarkRenderer, this.settingsManager);
+    this.widgetRenderer = new WidgetRenderer(this.widgetManager);
     
     // Set up callbacks for edit actions
     this.bookmarkRenderer.setEditBookmarkCallback((url, folderId) => {
@@ -52,6 +56,16 @@ class App {
       },
       onDeleteFolder: (folderId, name) => {
         return this.folderManager.deleteFolder(folderId);
+      }
+    });
+    
+    // Set up callbacks for widget actions
+    this.widgetRenderer.setCallbacks({
+      onDeleteWidget: (widgetId) => {
+        return this.deleteWidget(widgetId);
+      },
+      onUpdateWidgetContent: (widgetId, contentData) => {
+        return this.widgetManager.updateWidgetContent(widgetId, contentData);
       }
     });
     
@@ -80,6 +94,9 @@ class App {
     
     // Render bookmarks and folders
     this.renderContent();
+    
+    // Render widgets
+    this.widgetRenderer.renderAllWidgets();
     
     // Set initialized flag
     this.appInitialized = true;
@@ -256,6 +273,15 @@ class App {
       });
     }
     
+    // Add widget menu item
+    const addWidgetMenuItem = UI.getElement('addWidgetMenuItem');
+    if (addWidgetMenuItem) {
+      addWidgetMenuItem.addEventListener('click', () => {
+        UI.removeClass('addMenu', 'show');
+        this.modalManager.showAddWidgetModal();
+      });
+    }
+    
     // Export bookmarks menu item
     const saveBookmarksMenuItem = UI.getElement('saveBookmarksMenuItem');
     if (saveBookmarksMenuItem) {
@@ -394,8 +420,36 @@ class App {
         });
         this.bookmarkRenderer.updateTargets();
         UI.showToast('Settings saved', 'success');
+      },
+      onAddWidget: (type, position, title) => {
+        const widget = {
+          type: type,
+          position: position,
+          title: title
+        };
+        
+        const widgetId = this.widgetManager.addWidget(widget);
+        if (widgetId) {
+          this.widgetRenderer.renderAllWidgets();
+          UI.showToast(`${title || this.widgetManager.getDefaultTitle(type)} widget added`, 'success');
+        }
+        return !!widgetId;
       }
     });
+  }
+
+  /**
+   * Delete a widget
+   * @param {string} widgetId - Widget ID
+   * @returns {boolean} Success status
+   */
+  deleteWidget(widgetId) {
+    const success = this.widgetManager.deleteWidget(widgetId);
+    if (success) {
+      this.widgetRenderer.renderAllWidgets();
+      UI.showToast('Widget deleted', 'success');
+    }
+    return success;
   }
 
   /**

@@ -9,3 +9,4 @@
 @import 'search.css';
 @import 'dark-mode.css';
 @import 'utilities.css';
+@import 'widgets.css'; /* New import for widgets functionality */

@@ -19,7 +19,8 @@ class ModalManager {
       onAddFolder: null,
       onEditFolder: null,
       onDeleteFolder: null,
-      onSaveSettings: null
+      onSaveSettings: null,
+      onAddWidget: null
     };
     
     this.bookmarkManager = new BookmarkManager();
@@ -47,6 +48,9 @@ class ModalManager {
     
     // Set up settings modal
     this.setupSettingsModal();
+    
+    // Set up add widget modal
+    this.setupAddWidgetModal();
   }
 
   /**
@@ -437,6 +441,66 @@ class ModalManager {
         UI.removeClass(settingsModal, 'show');
       }
     });
+  }
+
+  /**
+   * Set up the add widget modal
+   */
+  setupAddWidgetModal() {
+    const addWidgetModal = UI.getElement('addWidgetModal');
+    const closeWidgetModal = UI.getElement('closeWidgetModal');
+    const cancelWidget = UI.getElement('cancelWidget');
+    const saveWidget = UI.getElement('saveWidget');
+    const addWidgetForm = UI.getElement('addWidgetForm');
+    
+    if (!addWidgetModal || !closeWidgetModal || !cancelWidget || 
+        !saveWidget || !addWidgetForm) {
+      console.error('Add widget modal elements not found');
+      return;
+    }
+    
+    // Close modal handlers
+    [closeWidgetModal, cancelWidget].forEach(el => {
+      el.addEventListener('click', () => {
+        UI.removeClass(addWidgetModal, 'show');
+        addWidgetForm.reset();
+      });
+    });
+    
+    // Close when clicking on backdrop
+    addWidgetModal.addEventListener('click', (e) => {
+      if (e.target === addWidgetModal) {
+        UI.removeClass(addWidgetModal, 'show');
+        addWidgetForm.reset();
+      }
+    });
+    
+    // Save widget
+    saveWidget.addEventListener('click', () => {
+      const type = UI.getElement('widgetType').value;
+      const positionElement = document.querySelector('input[name="widgetPosition"]:checked');
+      const position = positionElement ? positionElement.value : 'left';
+      const title = UI.getElement('widgetTitle').value.trim();
+      
+      if (!type) {
+        UI.showToast('Please select a widget type', 'error');
+        return;
+      }
+      
+      if (this.callbacks.onAddWidget) {
+        if (this.callbacks.onAddWidget(type, position, title)) {
+          UI.removeClass(addWidgetModal, 'show');
+          addWidgetForm.reset();
+        }
+      }
+    });
+  }
+
+  /**
+   * Show add widget modal
+   */
+  showAddWidgetModal() {
+    UI.showModal('addWidgetModal');
   }
 
   /**

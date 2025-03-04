@@ -75,6 +75,16 @@ app-shelf/
 
 App Shelf is built with vanilla JavaScript using ES6 modules for better organization.
 
+To contribute:
+1. Fork the repository
+2. Make your changes
+3. Test thoroughly with Chrome's extension tools
+4. Submit a pull request
+
 ## License
 
 [MIT License](LICENSE)
+
+## Credits
+
+Developed by App Shelf Team

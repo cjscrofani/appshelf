@@ -15,7 +15,7 @@
     position: relative;
     border-radius: 18px 18px 0 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    z-index: 1050;
+    z-index: 50; /* Reduced from 1050 */
 }
 
 /* Search Wrapper */
@@ -23,7 +23,7 @@
     display: flex;
     width: 80%;
     position: relative;
-    z-index: 1051;
+    z-index: 51; /* Reduced from 1051 */
 }
 
 /* Search Box */
@@ -70,7 +70,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
     width: 220px;
-    z-index: 1052;
+    z-index: 52; /* Reduced from 1052 */
     overflow: hidden;
     display: none;
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -125,4 +125,12 @@
     .search-container {
         padding: 15px;
     }
+}
+
+/* Make sure search elements don't block widget interaction */
+.search-container::after,
+.search-container::before,
+.search-wrapper::after,
+.search-wrapper::before {
+    pointer-events: none;
 }

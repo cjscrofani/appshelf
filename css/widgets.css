@@ -1,0 +1,357 @@
+/**
+ * widgets.css
+ * Styles for the widgets functionality
+ * COMPLETELY REVISED VERSION
+ */
+
+/* Widget Container - without any display property */
+.widgets-container {
+    /* No display property */
+    width: 280px;
+    padding: 10px;
+    position: fixed;
+    top: 80px;
+    bottom: 20px;
+    z-index: 100;
+    overflow-y: auto;
+    pointer-events: auto;
+}
+
+.widgets-container-left {
+    left: 20px;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+/* Widget Base Styles */
+.widget {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.widget:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background-color: rgba(240, 240, 240, 0.5);
+    pointer-events: auto;
+    position: relative;
+}
+
+.widget-title {
+    font-size: 14px;
+    font-weight: 600;
+    flex-grow: 1;
+    pointer-events: auto;
+}
+
+.widget-actions {
+    display: flex;
+    gap: 5px;
+    pointer-events: auto;
+    position: relative;
+}
+
+.widget-action-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(240, 240, 240, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    position: relative;
+}
+
+.widget-action-btn:hover {
+    background-color: #0169ff;
+    color: white;
+}
+
+.widget-content {
+    padding: 15px;
+    pointer-events: auto;
+    position: relative;
+}
+
+/* Sticky Note Widget */
+.widget-note {
+    background-color: #fff9c4;
+}
+
+.widget-note .widget-header {
+    background-color: #fff59d;
+}
+
+.widget-note textarea {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    min-height: 150px;
+    font-family: inherit;
+    padding: 0;
+    outline: none;
+    color: #333;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+/* Todo List Widget - REFINED */
+.widget-todo .todo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    pointer-events: auto;
+    position: relative;
+}
+
+/* Modern custom checkbox styling */
+.widget-todo .todo-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 21px;
+    height: 22px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    z-index: 5;
+    background-color: white;
+    /* Critical fix: ensure not checked by default */
+    checked: false;
+}
+
+/* Fix to ensure checkboxes are unchecked by default */
+input[type="checkbox"].todo-checkbox {
+    /* Override any browser defaults */
+    checked: flase !important;
+}
+
+.widget-todo .todo-checkbox:checked {
+    background-color: #0169ff;
+    border-color: #0169ff;
+}
+
+/* Refined checkmark icon with proper centering */
+.widget-todo .todo-checkbox:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Ensure checkboxes are unchecked by default */
+.widget-todo .todo-checkbox:not(:checked) {
+    background-color: white;
+}
+
+.widget-todo .todo-text {
+    flex-grow: 1;
+    user-select: none;
+    pointer-events: auto;
+    position: relative;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.widget-todo .todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Refined delete button to match UI style */
+.widget-todo .todo-delete {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(240, 240, 240, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    position: relative;
+}
+
+.widget-todo .todo-item:hover .todo-delete {
+    opacity: 1;
+}
+
+.widget-todo .todo-delete:hover {
+    background-color: rgba(142, 142, 147, 0.12);
+    color: #0169ff;
+}
+
+.widget-todo .todo-input-container {
+    display: flex;
+    margin-top: 10px;
+    pointer-events: auto;
+    position: relative;
+}
+
+.widget-todo .todo-input {
+    flex-grow: 1;
+    padding: 8px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 6px 0 0 6px;
+    font-size: 14px;
+    pointer-events: auto;
+    position: relative;
+    z-index: 5;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.widget-todo .todo-input:focus {
+    border-color: #0169ff;
+    box-shadow: 0 0 0 2px rgba(1, 105, 255, 0.1);
+    outline: none;
+}
+
+.widget-todo .todo-add-btn {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-left: none;
+    background-color: #f5f5f5;
+    border-radius: 0 6px 6px 0;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 5;
+    transition: all 0.2s ease;
+}
+
+.widget-todo .todo-add-btn:hover {
+    background-color: #0169ff;
+    color: white;
+    border-color: #0169ff;
+}
+
+/* Dark Mode Support */
+body.dark-mode .widget {
+    background-color: #2c2c2c;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .widget-header {
+    background-color: rgba(60, 60, 60, 0.5);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .widget-title {
+    color: #f0f0f0;
+}
+
+body.dark-mode .widget-action-btn {
+    background-color: rgba(70, 70, 70, 0.9);
+    color: #f0f0f0;
+}
+
+body.dark-mode .widget-note {
+    background-color: #4f4b30;
+}
+
+body.dark-mode .widget-note .widget-header {
+    background-color: #5d5940;
+}
+
+body.dark-mode .widget-note textarea {
+    color: #f0f0f0;
+}
+
+/* Dark mode specific todo styles */
+body.dark-mode .widget-todo .todo-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .widget-todo .todo-text {
+    color: #f0f0f0;
+}
+
+body.dark-mode .widget-todo .todo-item.completed .todo-text {
+    color: #aaa;
+}
+
+/* Dark mode specific checkbox styling */
+body.dark-mode .widget-todo .todo-checkbox {
+    border-color: #555;
+    background-color: #333;
+}
+
+body.dark-mode .widget-todo .todo-checkbox:not(:checked) {
+    background-color: #333;
+}
+
+body.dark-mode .widget-todo .todo-checkbox:checked {
+    background-color: #0169ff;
+    border-color: #0169ff;
+}
+
+/* Dark mode delete button */
+body.dark-mode .widget-todo .todo-delete {
+    background-color: rgba(70, 70, 70, 0.9);
+    color: #f0f0f0;
+}
+
+body.dark-mode .widget-todo .todo-delete:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #0169ff;
+}
+
+body.dark-mode .widget-todo .todo-input {
+    background-color: rgba(60, 60, 60, 0.7);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+}
+
+body.dark-mode .widget-todo .todo-input:focus {
+    border-color: #0169ff;
+    box-shadow: 0 0 0 2px rgba(1, 105, 255, 0.2);
+}
+
+body.dark-mode .widget-todo .todo-add-btn {
+    background-color: rgba(70, 70, 70, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+}
+
+body.dark-mode .widget-todo .todo-add-btn:hover {
+    background-color: #0169ff;
+    color: white;
+    border-color: #0169ff;
+}
