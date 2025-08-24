@@ -72,21 +72,23 @@
 @media (max-width: 1200px) {
     .content-area {
         grid-template-columns: repeat(2, 1fr);
-        margin-left: 220px;  /* Adjusted for smaller screens */
+        margin-left: 220px;
     }
     
     .search-container {
-        margin-left: 220px;  /* Adjusted for smaller screens */
+        margin-left: 220px;
     }
     
     .widgets-container-left {
-        width: 200px;  /* Adjusted for smaller screens */
+        width: 200px;
     }
 }
 
 @media (max-width: 992px) {
     .content-area {
         margin-left: 200px;
+        padding: 15px;
+        gap: 15px;
     }
     
     .search-container {
@@ -99,17 +101,80 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding-top: 10px;
+    }
+    
     .content-area {
         grid-template-columns: 1fr;
         margin-left: 0;
+        margin-right: 0;
+        padding: 15px;
+        gap: 15px;
+        border-radius: 0 0 15px 15px;
+        margin-top: 0;
     }
     
     .search-container {
         margin-left: 0;
+        margin-right: 0;
+        padding: 15px;
+        border-radius: 15px 15px 0 0;
+        margin-bottom: 0;
     }
     
     .bookmarks-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    
+    .add-button {
+        bottom: 25px;
+        right: 25px;
+        width: 56px;
+        height: 56px;
+        font-size: 28px;
+        box-shadow: 0 4px 16px rgba(1, 105, 255, 0.4);
+    }
+    
+    .add-menu {
+        bottom: 90px;
+        right: 25px;
+        width: 220px;
+    }
+    
+    /* Hide widgets completely on mobile to prevent overlap */
+    .widgets-container-left {
+        display: none !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .content-area {
+        padding: 12px;
+        gap: 12px;
+        border-radius: 0 0 12px 12px;
+        margin-top: 0;
+    }
+    
+    .search-container {
+        padding: 12px;
+        border-radius: 12px 12px 0 0;
+        margin-bottom: 0;
+    }
+    
+    .bookmarks-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .modal {
+        width: 95%;
+        margin: 10px;
     }
     
     .add-button {
@@ -121,36 +186,35 @@
     }
     
     .add-menu {
-        bottom: 80px;
+        bottom: 75px;
         right: 20px;
-    }
-    
-    .widgets-container-left {
-        left: -200px;
         width: 200px;
-        transition: transform 0.3s ease;
     }
     
-    .widgets-container-left:hover, 
-    .widgets-container-left:focus-within {
-        transform: translateX(200px);
-    }
-}
-
-@media (max-width: 576px) {
-    .bookmarks-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .modal {
-        width: 95%;
+    /* Keep widgets hidden on smaller mobile screens */
+    .widgets-container-left {
+        display: none !important;
     }
 }
 
 /* For very small screens */
 @media (max-width: 380px) {
+    .container {
+        padding: 8px;
+    }
+    
+    .content-area {
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .search-container {
+        padding: 0 8px;
+    }
+    
     .bookmarks-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
     }
     
     .add-button {
@@ -158,5 +222,22 @@
         right: 15px;
         width: 45px;
         height: 45px;
+        font-size: 20px;
+    }
+    
+    .add-menu {
+        bottom: 65px;
+        right: 15px;
+        width: 180px;
+    }
+    
+    .modal {
+        width: 98%;
+        margin: 5px;
+    }
+    
+    /* Ensure widgets stay hidden on very small screens */
+    .widgets-container-left {
+        display: none !important;
     }
 }

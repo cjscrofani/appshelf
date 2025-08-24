@@ -117,10 +117,21 @@ class ModalManager {
   /**
    * Populate folder select options
    * @param {string} [currentFolderId='unorganized'] - Currently selected folder ID
+   * @param {string} [targetModal='add'] - Which modal to populate ('add' or 'edit')
    */
-  populateFolderSelect(currentFolderId = 'unorganized') {
-    const selectElement = UI.getElement('bookmarkFolder') || UI.getElement('editBookmarkFolder');
-    if (!selectElement) return;
+  populateFolderSelect(currentFolderId = 'unorganized', targetModal = 'add') {
+    // Choose the correct select element based on target modal
+    let selectElement;
+    if (targetModal === 'edit') {
+      selectElement = UI.getElement('editBookmarkFolder');
+    } else {
+      selectElement = UI.getElement('bookmarkFolder');
+    }
+    
+    if (!selectElement) {
+      console.error('Folder select element not found for modal:', targetModal);
+      return;
+    }
     
     // Clear existing options except unorganized
     while (selectElement.options.length > 1) {
@@ -132,11 +143,29 @@ class ModalManager {
       const option = document.createElement('option');
       option.value = folder.id;
       option.textContent = folder.name;
+      
+      // Set as selected if this matches the current folder
+      if (folder.id === currentFolderId) {
+        option.selected = true;
+      }
+      
       selectElement.appendChild(option);
     });
     
-    // Set current folder as selected
-    selectElement.value = currentFolderId;
+    // Ensure the correct folder is selected after DOM updates
+    setTimeout(() => {
+      selectElement.value = currentFolderId;
+      
+      // Double-check if the value was set correctly
+      if (selectElement.value !== currentFolderId) {
+        // Fallback: find and select the option manually
+        const targetOption = Array.from(selectElement.options).find(opt => opt.value === currentFolderId);
+        if (targetOption) {
+          targetOption.selected = true;
+          selectElement.value = currentFolderId;
+        }
+      }
+    }, 10);
   }
 
   /**
@@ -226,7 +255,7 @@ class ModalManager {
   showEditBookmarkModal(url, folderId) {
     const result = this.bookmarkManager.findBookmark(url, folderId);
     if (!result) {
-      console.error('Bookmark not found for editing');
+      console.error('Bookmark not found for editing:', { url, folderId });
       return;
     }
     
@@ -241,8 +270,8 @@ class ModalManager {
     UI.getElement('editBookmarkUrl').value = bookmark.url || '';
     UI.getElement('editBookmarkImage').value = bookmark.image || '';
     
-    // Populate folder select
-    this.populateFolderSelect(folderId);
+    // Populate folder select with the correct current folder for edit modal
+    this.populateFolderSelect(folderId, 'edit');
     
     // Show the modal
     UI.showModal('editBookmarkModal');

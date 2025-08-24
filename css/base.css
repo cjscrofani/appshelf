@@ -18,6 +18,8 @@ body {
     background-color: #f2f2f7;
     padding: 20px;
     color: #1d1d1f;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* Main Container */
@@ -73,9 +75,44 @@ a:hover {
 
 /* Responsive adjustments for the footer */
 @media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .container {
+        padding-top: 10px;
+    }
+    
     .appshelf-branding {
         font-size: 0.8em;
         padding: 3px;
+        bottom: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+    
+    .appshelf-branding {
+        font-size: 0.75em;
+        bottom: 135px;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        padding: 8px;
+    }
+    
+    .container {
+        padding-top: 5px;
+    }
+    
+    .appshelf-branding {
+        font-size: 0.7em;
+        bottom: 130px;
     }
 }
 

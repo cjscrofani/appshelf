@@ -304,6 +304,13 @@
     align-items: center;
     cursor: pointer;
     z-index: 1053;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.night-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .toggle-label {
@@ -493,11 +500,18 @@ input:checked + .slider:before {
     cursor: pointer;
     z-index: 1000;
     transition: all 0.2s ease;
+    border: none;
+    outline: none;
+    touch-action: manipulation;
 }
 
 .add-button:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 16px rgba(1, 105, 255, 0.4);
+}
+
+.add-button:active {
+    transform: scale(0.95);
 }
 
 .add-menu {
@@ -783,5 +797,172 @@ body.dark-mode .bookmark-edit-btn {
   .bookmark-edit-btn {
     pointer-events: auto !important;
     z-index: 51;
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Better touch targets for mobile */
+  .btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  .bookmark-card {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  .bookmark-edit-btn {
+    width: 32px;
+    height: 32px;
+    top: 8px;
+    right: 8px;
+    touch-action: manipulation;
+  }
+  
+  .bookmark-edit-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .folder-edit-btn {
+    width: 32px;
+    height: 32px;
+    touch-action: manipulation;
+  }
+  
+  /* Improve form inputs for mobile */
+  .form-input,
+  .form-select {
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 44px;
+  }
+  
+  /* Better night mode toggle for mobile - moved to avoid search overlap */
+  .night-mode-toggle {
+    top: auto;
+    bottom: 100px;
+    right: 15px;
+    padding: 12px;
+    min-width: 44px;
+    min-height: 44px;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Improve add menu for mobile */
+  .add-menu-item {
+    padding: 16px 20px;
+    min-height: 48px;
+  }
+  
+  .add-menu-item-text {
+    font-size: 16px;
+  }
+  
+  /* Better context menu for mobile */
+  .context-menu-item {
+    padding: 12px 20px;
+    min-height: 44px;
+  }
+  
+  .context-menu-item-text {
+    font-size: 16px;
+  }
+  
+  /* Show actions on mobile tap/touch */
+  .bookmark-actions,
+  .folder-actions {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  @supports (hover: none) {
+    .bookmark-actions,
+    .folder-actions {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .modal {
+    border-radius: 15px;
+  }
+  
+  .modal-header {
+    padding: 16px;
+  }
+  
+  .modal-body {
+    padding: 16px;
+  }
+  
+  .modal-footer {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .keyboard-shortcuts {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    max-width: none;
+    padding: 20px;
+  }
+  
+  .toast-notification {
+    bottom: 15px;
+    right: 15px;
+    left: 15px;
+    padding: 16px 20px;
+  }
+  
+  /* Adjust night mode toggle for smaller screens */
+  .night-mode-toggle {
+    bottom: 85px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .add-menu {
+    width: calc(100vw - 30px);
+    left: 15px;
+    right: 15px;
+  }
+  
+  .form-input,
+  .form-select {
+    font-size: 14px;
+  }
+  
+  /* Position night mode toggle for very small screens */
+  .night-mode-toggle {
+    bottom: 80px;
+    right: 15px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 10px;
   }
 }

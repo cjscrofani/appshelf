@@ -10,3 +10,4 @@
 @import 'dark-mode.css';
 @import 'utilities.css';
 @import 'widgets.css'; /* New import for widgets functionality */
+@import 'mobile.css'; /* Mobile-specific enhancements */
