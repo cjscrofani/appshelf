@@ -232,11 +232,11 @@
 /* High DPI display adjustments */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .bookmark-image {
-        background-size: 60%;
+        background-size: 100% 100%;
     }
     
     .bookmark-image.favicon-background {
-        background-size: 55%;
+        background-size: 100% 100%;
     }
     
     .search-engine-icon,

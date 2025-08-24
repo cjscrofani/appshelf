@@ -62,8 +62,9 @@
 .bookmark-image {
     height: 100%;
     width: 100%;
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
+    background-repeat: no-repeat;
     background-color: #f2f2f7;
     display: flex;
     justify-content: center;
@@ -73,7 +74,7 @@
 }
 
 .bookmark-image.favicon-background {
-    background-size: 50%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
